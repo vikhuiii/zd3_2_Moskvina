@@ -21,6 +21,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Zd3_2_Moskv">
         <activity
+            android:name=".QuestsActivity"
+            android:exported="false" />
+        <activity
             android:name=".SecondActivity"
             android:exported="false" />
         <activity

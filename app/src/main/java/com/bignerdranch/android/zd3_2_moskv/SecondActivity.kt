@@ -7,6 +7,7 @@ import android.os.CountDownTimer
 import android.view.View
 import android.widget.EditText
 import androidx.activity.enableEdgeToEdge
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
@@ -22,6 +23,16 @@ class SecondActivity : Activity() {
         password=findViewById(R.id.password)
     }
     fun Login(view: View){
-
+        if(email.text.toString().isNotEmpty()&&password.text.toString().isNotEmpty()){
+            val intent= Intent(this,QuestsActivity::class.java)
+            startActivity(intent)
+        }
+        else{
+            val alert= AlertDialog.Builder(this)
+                .setTitle("Error")
+                .setMessage("У вас есть пустые поля")
+                .setPositiveButton("Ok", null)
+                .show()
+        }
     }
 }
