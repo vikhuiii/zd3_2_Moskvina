@@ -1,7 +1,6 @@
 package com.bignerdranch.android.zd3_2_moskv
 
 import android.os.Bundle
-import android.telecom.Call
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,8 +10,9 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.bumptech.glide.Glide
-import kotlinx.coroutines.*
-import javax.security.auth.callback.Callback
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 
 class MovieDetailFragment : Fragment() {
@@ -33,7 +33,7 @@ class MovieDetailFragment : Fragment() {
         ivPoster = view.findViewById(R.id.ivPoster)
         tvTitle = view.findViewById(R.id.tvTitle)
         tvInfo = view.findViewById(R.id.tvInfo)
-        tvPlot = view.findViewById(R.tvPlot)
+        tvPlot = view.findViewById(R.id.tvPlot)
         btnBack = view.findViewById(R.id.btnBack)
 
         val movieId = arguments?.getString("MOVIE_ID")
@@ -60,7 +60,9 @@ class MovieDetailFragment : Fragment() {
                         tvInfo.text = "Год: ${it.Year}"
                         tvPlot.text = "Описание недоступно в кратком поиске. ID: ${it.imdbID}"
                         if (it.Poster != "N/A") {
-                            Picasso.get().load(it.Poster).into(ivPoster)
+                            Glide.with(this@MovieDetailFragment)
+                                .load(it.Poster)
+                                .into(ivPoster)
                         }
                     }
                 }

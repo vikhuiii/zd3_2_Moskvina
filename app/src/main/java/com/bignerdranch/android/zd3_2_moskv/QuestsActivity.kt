@@ -2,20 +2,21 @@ package com.bignerdranch.android.zd3_2_moskv
 
 import android.app.Activity
 import android.os.Bundle
-import android.telecom.Call
 import android.widget.EditText
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import okhttp3.Response
-import javax.security.auth.callback.Callback
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
-class QuestsActivity : Activity() {
+class QuestsActivity : AppCompatActivity() {
     private lateinit var rvChannels: RecyclerView
     private lateinit var rvMovies: RecyclerView
     private lateinit var etSearch: EditText
-    private lateinit var movieAdapter: QuestRecycler
+    private lateinit var movieAdapter: MovieAdapter
     private val channels = listOf("Action", "Comedy", "Drama", "Sci-Fi", "Horror")
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -37,9 +38,8 @@ class QuestsActivity : Activity() {
         }
     }
     private fun setupMoviesGrid() {
-
-        rvMovies.layoutManager = GridLayoutManager(this, 4) // 4 колонки для TV
-        movieAdapter = QuestRecycler(emptyList()) { movie ->
+        rvMovies.layoutManager = GridLayoutManager(this, 4)
+        movieAdapter = MovieAdapter(emptyList()) { movie ->
             openMovieDetailFragment(movie.imdbID)
         }
         rvMovies.adapter = movieAdapter
@@ -79,7 +79,9 @@ class QuestsActivity : Activity() {
         val bundle = Bundle()
         bundle.putString("MOVIE_ID", movieId)
         fragment.arguments = bundle
-         supportFragmentManager.beginTransaction()
+
+
+        supportFragmentManager.beginTransaction()
             .replace(R.id.fragment_container, fragment)
             .addToBackStack(null)
             .commit()

@@ -48,11 +48,9 @@
             android:layout_height="wrap_content"
             android:backgroundTint="@color/purple_200"
             android:layout_marginTop="10dp"
-            android:textCursorDrawable="@drawable/kazan"
-            android:hint="Email"
+            android:hint="Password"
             android:inputType="textPassword"
             android:textColor="@color/black"
-            android:textColorHighlight="@color/purple_700"
             android:textColorHint="@color/purple_500"/>
         <Button
             android:id="@+id/login"
