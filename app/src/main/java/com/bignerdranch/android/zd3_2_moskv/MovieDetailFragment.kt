@@ -7,13 +7,7 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
-import android.widget.Toast
 import androidx.fragment.app.Fragment
-import com.bumptech.glide.Glide
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
-
 
 class MovieDetailFragment : Fragment() {
 
@@ -49,27 +43,25 @@ class MovieDetailFragment : Fragment() {
     }
 
     private fun loadMovieDetails(imdbId: String) {
-       val call = RetrofitClient.apiService.searchMovies(imdbId, RetrofitClient.getApiKey())
+        /*
 
+        val call = RetrofitClient.apiService.searchMovies(imdbId, RetrofitClient.getApiKey())
         call.enqueue(object : Callback<MovieResponse> {
             override fun onResponse(call: retrofit2.Call<MovieResponse>, response: Response<MovieResponse>) {
-                if (response.isSuccessful && response.body()?.Response == "True") {
-                    val movie = response.body()?.Search?.firstOrNull()
-                    movie?.let {
-                        tvTitle.text = it.Title
-                        tvInfo.text = "Год: ${it.Year}"
-                        tvPlot.text = "Описание недоступно в кратком поиске. ID: ${it.imdbID}"
-                        if (it.Poster != "N/A") {
-                            Glide.with(this@MovieDetailFragment)
-                                .load(it.Poster)
-                                .into(ivPoster)
-                        }
-                    }
-                }
+                // ... старый код ...
             }
             override fun onFailure(call: Call<MovieResponse>, t: Throwable) {
                 Toast.makeText(context, "Ошибка загрузки деталей", Toast.LENGTH_SHORT).show()
             }
         })
+        */
+
+
+        tvTitle.text = "Название фильма (ID: $imdbId)"
+        tvInfo.text = "Год: 2024 | Жанр: Фантастика / Боевик"
+        tvPlot.text = "Это демонстрационная заглушка описания фильма. Здесь должен быть подробный сюжет, но сейчас мы показываем, как работает интерфейс без реальных запросов к API. Фильтрация по жанрам работает отлично!"
+
+
+        ivPoster.setImageResource(R.drawable.kazan)
     }
 }
